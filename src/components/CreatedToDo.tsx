@@ -8,15 +8,40 @@ interface IForm {
   newCategory?: string;
 }
 const Form = styled.form`
-  padding: 10px;
+  padding: 20px;
   margin: 10px;
   border-radius: 10px;
   display: flex;
-  background-color: white;
+
+  align-items: center;
+  background-color: #ffb3ba;
   color: black;
   flex-direction: column;
   width: 40%;
   gap: 10px;
+  border: none;
+`;
+const ToDoBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
+`;
+
+const InputBox = styled.input`
+  border: none;
+  opacity: 0.5;
+  background-color: white;
+  &:hover {
+    opacity: 1;
+  }
+`;
+export const Button = styled.button`
+  padding: 3px 15px;
+  background-color: #bae1ff;
+  color: white;
+  border-radius: 15px;
+  border: none;
+  text-align: center;
 `;
 
 function CreatedToDo() {
@@ -40,17 +65,18 @@ function CreatedToDo() {
     setValue("ToDo", "");
     setValue("newCategory", "");
   };
+
   return (
     <Form onSubmit={handleSubmit(handleVaild)}>
-      <div>
+      <ToDoBox>
         <label htmlFor="todo">ToDO Input</label>
-        <input id="todo" {...register("ToDo", { required: "write todo" })} />
-      </div>
-      <div>
+        <InputBox id="todo" {...register("ToDo", { required: "write todo" })} />
+      </ToDoBox>
+      <ToDoBox>
         <label htmlFor="custom">Custom Input</label>
-        <input id="custom" {...register("newCategory")} />
-      </div>
-      <button>Add</button>
+        <InputBox id="custom" {...register("newCategory")} />
+      </ToDoBox>
+      <Button>Add</Button>
     </Form>
   );
 }

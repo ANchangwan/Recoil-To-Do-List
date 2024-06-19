@@ -6,6 +6,24 @@ import {
   toDoState,
   INewCategory,
 } from "./atom";
+import { styled } from "styled-components";
+import { Button } from "./CreatedToDo";
+
+const Title = styled.span`
+  margin: 0px 15px;
+  font-size: 15px;
+`;
+const List = styled.li`
+  display: flex;
+  align-items: center;
+  padding: 5px 0px;
+`;
+const Btn = styled(Button)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 5px;
+`;
 
 function ToDo({ id, text, category }: IToDo) {
   const setToDo = useSetRecoilState(toDoState);
@@ -24,26 +42,26 @@ function ToDo({ id, text, category }: IToDo) {
   };
 
   return (
-    <li>
-      <span>{text}</span>
+    <List>
+      <Title>{text}</Title>
       {category !== Categories.TO_DO && (
-        <button onClick={() => onClick(Categories.TO_DO)}>TO DO</button>
+        <Btn onClick={() => onClick(Categories.TO_DO)}>TO DO</Btn>
       )}
       {category !== Categories.DOING && (
-        <button onClick={() => onClick(Categories.DOING)}>Doing</button>
+        <Btn onClick={() => onClick(Categories.DOING)}>Doing</Btn>
       )}
       {category !== Categories.DONE && (
-        <button onClick={() => onClick(Categories.DONE)}>Done</button>
+        <Btn onClick={() => onClick(Categories.DONE)}>Done</Btn>
       )}
       {Object.keys(newCategory).map(
         (custome) =>
           category !== custome && (
-            <button key={custome} onClick={() => onClick(custome)}>
+            <Btn key={custome} onClick={() => onClick(custome)}>
               {custome}
-            </button>
+            </Btn>
           )
       )}
-    </li>
+    </List>
   );
 }
 

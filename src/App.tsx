@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, styled } from "styled-components";
 import ToDoList from "./components/ToDoList";
 
 const GlobalStyles = createGlobalStyle`
@@ -31,7 +31,7 @@ footer, header, hgroup, menu, nav, section {
 body {
 	line-height: 1;
 }
-ol, ul {
+ol, ul,li {
 	list-style: none;
 }
 blockquote, q {
@@ -62,12 +62,18 @@ a{
 
 `;
 
+const Wrapper = styled.div`
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+`;
+
 function App() {
   return (
-    <>
+    <Wrapper>
       <GlobalStyles />
       <ToDoList />
-    </>
+    </Wrapper>
   );
 }
 
